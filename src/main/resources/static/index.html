@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="text"], input[type="password"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+
+<form id="loginForm">
+    <h1>GoormIDE 로그인</h1>
+    <input type="text" id="id" name="id" required placeholder="ID">
+    <input type="password" id="password" name="password" required placeholder="Password">
+    <button type="submit">Login</button>
+</form>
+<button type="button" id="reser" class="reser">회원가입</button>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.reser', function() {
+            window.location.href = '/signup.html';
+        });
+        $('#loginForm').on('submit', function(e) {
+            e.preventDefault(); // 폼 기본 제출 방지
+
+            var id = $('#id').val();
+            var password = $('#password').val();
+
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                contentType: 'application/x-www-form-urlencoded',
+                data: {
+                    id: id,
+                    password: password
+                },
+                success: function(response, textStatus, xhr) {
+                    // HTTP 상태 코드가 200인 경우
+                    if (xhr.status === 200) {
+                        console.log(response);
+                        // localStorage.setItem('companyId', response.companyId); // 로컬 스토리지에 저장
+                        localStorage.setItem('seq',response.memberSeq);
+                        // sessionStorage.setItem('companyId', response.companyId); // 세션 스토리지에 저장
+                        // document.cookie = "companyId=" + response.companyId + "; path=/; max-age=3600"; // 쿠키에 저장, 1시간 동안 유효
+                        // window.location.href = '/main.html'; // 리다이렉션
+                    } else {
+                        alert("로그인 실패"); // 다른 상태 코드를 받은 경우
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // 요청 실패 처리
+                    alert("로그인 요청 실패");
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+<h2>회원가입</h2>
+<form id="signupForm">
+    <div>
+        <label for="userId">User ID:</label>
+        <input type="text" id="userId" name="userId" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+        <label for="phoneNum">Phone Number:</label>
+        <input type="text" id="phoneNum" name="phoneNum" required>
+    </div>
+    <button type="button" onclick="submitForm()">회원가입</button>
+</form>
+
+<script>
+    function submitForm() {
+        var formData = {
+            userId: document.getElementById('userId').value,
+            password: document.getElementById('password').value,
+            phoneNum: document.getElementById('phoneNum').value,
+            reg_time: new Date().toISOString() // 클라이언트의 현재 시간을 ISO 문자열로 설정
+        };
+
+        fetch('/insMem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => response.text())
+            .then(data => {
+                alert(data); // 성공 또는 실패 메시지를 알림으로 표시
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('회원가입 중 오류가 발생했습니다.');
+            });
+    }
+</script>
+</body>
+</html>
