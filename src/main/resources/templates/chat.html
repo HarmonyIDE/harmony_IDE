@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>채팅방</title>
+    <!-- jQuery 라이브러리 포함 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- 스타일시트 링크 -->
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- 추가적인 자바스크립트 파일 포함 -->
+    <script src="/static/app.js"></script>
+</head>
+<body>
+<!-- 채팅 메시지를 표시할 영역 -->
+<div id="chatArea"></div>
+<!-- 메시지 입력 필드 -->
+<input type="text" id="message">
+<!-- 메시지 전송 버튼 -->
+<button id="send">보내기</button>
+<!-- 메시지 검색 필드 -->
+<input type="text" id="searchQuery" placeholder="메시지 검색...">
+<!-- 검색 버튼 -->
+<button onclick="searchMessages()">검색</button>
+<!-- 검색 결과 표시 영역 -->
+<div id="searchResults"></div>
+
+<script>
+    $(document).ready(function() {
+        // 세션에서 저장된 닉네임을 가져옵니다.
+        const nickname = sessionStorage.getItem('nickname');
+        // WebSocket 연결을 초기화합니다.
+        const websocket = new WebSocket("ws://localhost:8080/ws/chat");
+
+        // WebSocket 연결이 열리면 실행됩니다.
+        websocket.onopen = function() {
+            // 서버에 사용자 입장 메시지를 전송합니다.
+            const joinMsg = nickname + "님이 입장하셨습니다.";
+            websocket.send(joinMsg);
+        };
+
+        // 서버로부터 메시지를 받을 때 실행됩니다.
+        websocket.onmessage = function(event) {
+            // 받은 메시지를 채팅 영역에 추가합니다.
+            $('#chatArea').append('<div>' + event.data + '</div>');
+        };
+
+        // 보내기 버튼 클릭 시 메시지를 전송합니다.
+        $('#send').click(function() {
+            const msg = nickname + ": " + $('#message').val();
+            websocket.send(msg);  // 메시지 전송
+            $('#message').val('');  // 입력 필드 초기화
+        });
+    });
+
+    // 메시지 검색 함수
+    function searchMessages() {
+        // 검색 쿼리를 가져옵니다.
+        const query = document.getElementById('searchQuery').value;
+        // 서버에 검색 쿼리를 전송하고 결과를 받습니다.
+        fetch(`/search?query=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(messages => {
+                // 검색 결과를 표시합니다.
+                const results = document.getElementById('searchResults');
+                results.innerHTML = messages.map(msg => `${msg.content}</div>`).join('');
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+</body>
+</html>
