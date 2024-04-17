@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>boardupdate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        input[type=text], textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=button] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=button]:hover {
+            background-color: #45a049;
+        }
+        input[readonly] {
+            background-color: #f3f3f3;
+        }
+    </style>
+</head>
+<body>
+<form action="/board/update" method="post" name="updateForm">
+    <input type="hidden" name="id" th:value="${boardUpdate.id}">
+    작성자: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
+    비밀번호: <input type="text" name="boardPass" id="boardPass"> <br>
+    제목: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
+    글 내용: <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
+    <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
+    <input type="button" value="글수정" onclick="boardUpdate()">
+</form>
+<script th:inline="javascript">
+    const boardUpdate = () => {
+        const pass = [[${boardUpdate.boardPass}]];
+        const inputPass = document.getElementById("boardPass").value;
+        if (pass == inputPass) {
+            document.updateForm.submit();
+        } else {
+            alert("비밀번호가 일치하지 않습니다!");
+        }
+    }
+</script>
+</body>
+</html>

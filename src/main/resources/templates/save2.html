@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>save2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        input[type=text], textarea, input[type=file] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type=submit] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<!-- front 부분은 되도록이면 복사 붙여넣기 해주세요 -->
+<form action="/board/save" method="post" enctype="multipart/form-data">
+    사용자: <input type="text" name="boardWriter"> <br>
+    비밀번호: <input type="text" name="boardPass"> <br>
+    글제목: <input type="text" name="boardTitle"> <br>
+    글 내용: <textarea name="boardContents" cols="30" rows="10"></textarea> <br>
+    파일: <input type="file" name="boardFile"> <br>
+    <input type="submit" value="글작성">
+</form>
+</body>
+</html>

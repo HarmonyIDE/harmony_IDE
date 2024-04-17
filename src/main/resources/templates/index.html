@@ -1,0 +1,28 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+
+</head>
+<body>
+<h2>코드 하모니</h2>
+<a href="/nickname.html">닉네임 입력하러 가기</a>
+
+
+<div id="nicknameModal" class="modal">
+
+</div>
+<button onclick="saveReq()">게시판</button>
+<button onclick="listReq()">글목록</button>
+</body>
+<script>
+    const saveReq = () => {
+        location.href = "/board/save";
+    }
+    const listReq = () => {
+        location.href = "/board/";
+    }
+</script>
+</html>
