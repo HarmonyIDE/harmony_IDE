@@ -38,6 +38,8 @@ dependencies {
 	implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
 	//Oauth2 client
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	//local build h2
+	runtimeOnly 'com.h2database:h2'
 
 }
 
