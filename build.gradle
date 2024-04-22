@@ -40,6 +40,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	//local build h2
 	runtimeOnly 'com.h2database:h2'
+	//webSocket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
 }
 
