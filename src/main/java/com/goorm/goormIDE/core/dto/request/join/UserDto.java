@@ -1,7 +1,9 @@
 package com.goorm.goormIDE.core.dto.request.join;
 
+import com.goorm.goormIDE.domain.primary.login.entity.User;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Data
 @Builder
@@ -16,4 +18,15 @@ public class UserDto {
     private String image;
 
     private String role;
+
+    public static UserDto of(User user) {
+
+        return UserDto.builder()
+                .username(user.getUsername())
+                .name(user.getName())
+                .email(user.getEmail())
+                .image(user.getImage())
+                .role(user.getRole())
+                .build();
+    }
 }
