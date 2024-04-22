@@ -2,7 +2,7 @@ package com.goorm.goormIDE.api.filter;
 
 import com.goorm.goormIDE.api.util.JwtUtil;
 import com.goorm.goormIDE.core.dto.request.join.CustomUserDetails;
-import com.goorm.goormIDE.domain.primary.login.entity.User;
+import com.goorm.goormIDE.domain.primary.login.entity.Users;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +39,7 @@ public class JwtFilter extends OncePerRequestFilter {
         String username = jwtUtil.getUsername(token);
         String role = jwtUtil.getRole(token);
 
-        User user = User.builder()
+        Users user = Users.builder()
                 .username(username)
                 .password("temppassword")
                 .role(role)

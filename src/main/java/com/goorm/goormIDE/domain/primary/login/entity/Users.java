@@ -3,12 +3,10 @@ package com.goorm.goormIDE.domain.primary.login.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User {
+public class Users {
 
     //DB 상 PK
     @Id
@@ -30,7 +28,7 @@ public class User {
     private String role;
 
     @Builder
-    private User(Long id, String username, String password, String name, String email, String image, String role) {
+    private Users(Long id, String username, String password, String name, String email, String image, String role) {
         this.id = id;
         this.username = username;
         this.password = password;

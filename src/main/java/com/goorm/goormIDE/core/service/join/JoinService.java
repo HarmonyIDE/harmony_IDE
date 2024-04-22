@@ -1,14 +1,11 @@
 package com.goorm.goormIDE.core.service.join;
 
 import com.goorm.goormIDE.core.dto.request.join.JoinDto;
-import com.goorm.goormIDE.domain.primary.login.entity.User;
+import com.goorm.goormIDE.domain.primary.login.entity.Users;
 import com.goorm.goormIDE.domain.primary.login.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,7 +30,7 @@ public class JoinService {
             return ;
         }
 
-        User user = User.builder()
+        Users user = Users.builder()
                 .username(username)
                 .password(bCryptPasswordEncoder.encode(password))
                 .name(joinDto.getName())

@@ -1,6 +1,6 @@
 package com.goorm.goormIDE.core.dto.request.join;
 
-import com.goorm.goormIDE.domain.primary.login.entity.User;
+import com.goorm.goormIDE.domain.primary.login.entity.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class CustomUserDetails implements UserDetails {
 
-    private final User user;
+    private final Users user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

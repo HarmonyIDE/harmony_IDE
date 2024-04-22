@@ -1,7 +1,7 @@
 package com.goorm.goormIDE.core.service.user;
 
 import com.goorm.goormIDE.core.dto.request.join.CustomUserDetails;
-import com.goorm.goormIDE.domain.primary.login.entity.User;
+import com.goorm.goormIDE.domain.primary.login.entity.Users;
 import com.goorm.goormIDE.domain.primary.login.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         // TODO: 유저가 없을 때, 로직 구현
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException());
+        Users user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException());
 
         return new CustomUserDetails(user);
 

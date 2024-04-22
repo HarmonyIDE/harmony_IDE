@@ -1,8 +1,7 @@
 package com.goorm.goormIDE.core.service.user;
 
 import com.goorm.goormIDE.core.dto.*;
-import com.goorm.goormIDE.core.dto.request.join.UserDto;
-import com.goorm.goormIDE.domain.primary.login.entity.User;
+import com.goorm.goormIDE.domain.primary.login.entity.Users;
 import com.goorm.goormIDE.domain.primary.login.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -40,10 +39,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         String username = oAuth2UserInfo.getProvider() + " " + oAuth2UserInfo.getProviderId();
 
-        Optional<User> findUser = userRepository.findByUsername(username);
+        Optional<Users> findUser = userRepository.findByUsername(username);
 
         if (findUser.isEmpty()) {
-            User user = User.builder()
+            Users user = Users.builder()
                     .username(username)
                     .name(oAuth2UserInfo.getName())
                     .email(oAuth2UserInfo.getEmail())
@@ -55,7 +54,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
             return new CustomOAuth2User(user);
 
         } else {
-            User user = findUser.get();
+            Users user = findUser.get();
             user.setImage(oAuth2UserInfo.getImage());
             userRepository.save(user);
 
