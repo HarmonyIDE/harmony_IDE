@@ -30,7 +30,7 @@ public class BoardEntity extends BaseEntity{
     @Column
     private int boardHits;
 
-    public static BoardEntity toSaveEntity(BoardDTO boardDTO){
+    public static BoardEntity toSaveEntity(BoardDTO boardDTO){ // 새 게시글 추가를 위한 메소드
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
         boardEntity.setBoardPass(boardDTO.getBoardPass());
@@ -41,8 +41,7 @@ public class BoardEntity extends BaseEntity{
         return boardEntity;
     }
 
-
-    public static BoardEntity toUpdateEntity(BoardDTO boardDTO) {
+    public static BoardEntity toUpdateEntity(BoardDTO boardDTO) { // 게시글 수정을 위한 메소드
         BoardEntity boardEntity = new BoardEntity();
         boardEntity.setId(boardDTO.getId());
         boardEntity.setBoardWriter(boardDTO.getBoardWriter());
@@ -52,4 +51,5 @@ public class BoardEntity extends BaseEntity{
         boardEntity.setBoardHits(boardDTO.getBoardHits());
         return boardEntity;
     }
+
 }
