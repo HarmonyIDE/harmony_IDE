@@ -19,7 +19,7 @@ public class JoinController {
     @PostMapping("/join")
     public ResponseEntity join(
             @RequestPart("joinData") JoinDto joinDto,
-            @RequestPart("image") MultipartFile image) {
+            @RequestPart(value = "image", required = false) MultipartFile image) {
 
         joinService.join(joinDto, image);
 
