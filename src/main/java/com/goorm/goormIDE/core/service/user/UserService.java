@@ -16,4 +16,9 @@ public class UserService {
         Users user = userRepository.findById(id).orElseThrow();
         return UserDto.of(user);
     }
+
+    public UserDto findByUsername(String username) {
+        Users user = userRepository.findByUsername(username).orElseThrow();
+        return UserDto.of(user);
+    }
 }
