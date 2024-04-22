@@ -66,17 +66,7 @@ public class SecurityConfig {
 
         http
                 .csrf(csrf -> csrf.disable());
-        //h2 콘솔 허용
-        http
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/h2-console/**"))
-                .headers(
-                        headersConfigurer ->
-                                headersConfigurer
-                                        .frameOptions(
-                                                HeadersConfigurer.FrameOptionsConfig::sameOrigin
-                                        )
-                );
+
         http
                 .formLogin(formLogin -> formLogin.disable());
 

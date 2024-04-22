@@ -1,9 +1,8 @@
 package com.goorm.goormIDE.core.dto.request.join;
 
-import com.goorm.goormIDE.domain.primary.login.entity.User;
+import com.goorm.goormIDE.domain.primary.login.entity.Users;
 import lombok.Builder;
 import lombok.Data;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Data
 @Builder
@@ -19,7 +18,7 @@ public class UserDto {
 
     private String role;
 
-    public static UserDto of(User user) {
+    public static UserDto of(Users user) {
 
         return UserDto.builder()
                 .username(user.getUsername())
