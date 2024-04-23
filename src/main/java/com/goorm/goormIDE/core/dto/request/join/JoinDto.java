@@ -13,4 +13,8 @@ public class JoinDto {
     private String name;
 
     private String email;
+
+    private String oldPassword;
+
+    private String image;
 }

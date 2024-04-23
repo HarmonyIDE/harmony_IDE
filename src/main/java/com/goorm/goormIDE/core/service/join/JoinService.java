@@ -74,6 +74,9 @@ public class JoinService {
                 .role("ROLE_USER")
                 .build();
 
+        if(image==null){
+            user.setImage("default");
+        }
         userRepository.save(user);
     }
 }
