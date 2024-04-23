@@ -56,15 +56,10 @@ public class BoardController {
     }
 
     @GetMapping("/post/{id}")
-    public ResponseEntity<Map<String, Object>> getPostById(@PathVariable Long id) {
+    public ResponseEntity<BoardDTO> getPostById(@PathVariable Long id) {
         BoardDTO boardDTO = boardService.findById(id);
-        List<CommentDTO> commentDTOs = commentService.findAll(id); // 게시글 ID에 해당하는 댓글들을 불러오는 서비스 메소드
-
         if (boardDTO != null) {
-            Map<String, Object> response = new HashMap<>();
-            response.put("board", boardDTO);
-            response.put("comments", commentDTOs); // 응답에 댓글 목록 추가
-            return ResponseEntity.ok(response);
+            return ResponseEntity.ok(boardDTO);
         } else {
             return ResponseEntity.notFound().build();
         }
