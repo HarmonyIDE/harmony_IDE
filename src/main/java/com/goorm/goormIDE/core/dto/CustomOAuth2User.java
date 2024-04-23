@@ -36,10 +36,10 @@ public class CustomOAuth2User implements OAuth2User {
 
     @Override
     public String getName() {
-        return user.getName();
-    }
-
-    public String getUsername() {
         return user.getUsername();
     }
+
+//    public String getUsername() {
+//        return user.getUsername();
+//    }
 }

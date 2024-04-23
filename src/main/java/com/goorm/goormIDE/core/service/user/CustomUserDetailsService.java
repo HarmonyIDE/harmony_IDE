@@ -19,8 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         // TODO: 유저가 없을 때, 로직 구현
-        Users user = userRepository.findByUsername(username).orElseThrow(() -> new IllegalArgumentException());
-
+        Users user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         return new CustomUserDetails(user);
 
     }
