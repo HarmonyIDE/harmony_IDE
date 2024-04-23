@@ -1,12 +1,16 @@
 package com.goorm.goormIDE.api.util;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
+import java.security.SignatureException;
 import java.util.Date;
 
 @Component
@@ -40,4 +44,7 @@ public class JwtUtil {
                 .signWith(secretKey)
                 .compact();
     }
+
+
+
 }

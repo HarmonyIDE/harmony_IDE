@@ -50,7 +50,7 @@ public class BoardService {
             BoardEntity entity = optionalEntity.get();
             // 받은 DTO로 엔티티를 업데이트
             entity.setBoardWriter(boardDTO.getBoardWriter());
-            entity.setBoardPass(boardDTO.getBoardPass());
+            //entity.setBoardPass(boardDTO.getBoardPass());
             entity.setBoardTitle(boardDTO.getBoardTitle());
             entity.setBoardContents(boardDTO.getBoardContents());
             // 엔티티를 저장하여 업데이트를 완료

@@ -74,6 +74,7 @@ public class JoinService {
                 .role("ROLE_USER")
                 .build();
 
+
         userRepository.save(user);
     }
 }

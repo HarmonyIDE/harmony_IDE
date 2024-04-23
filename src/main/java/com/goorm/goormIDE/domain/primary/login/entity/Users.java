@@ -27,6 +27,7 @@ public class Users {
 
     private String role;
 
+
     @Builder
     private Users(Long id, String username, String password, String name, String email, String image, String role) {
         this.id = id;
