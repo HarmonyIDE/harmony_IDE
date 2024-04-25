@@ -11,8 +11,6 @@ public class ApiResponse {
         this.data = data;
     }
 
-    // Getters and setters 생략
-
     public static ApiResponse success(String message) {
         return new ApiResponse(true, message,null);
     }
