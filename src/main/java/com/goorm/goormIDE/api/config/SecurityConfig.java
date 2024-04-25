@@ -93,6 +93,7 @@ public class SecurityConfig {
                         .requestMatchers("/swagger-ui/**","/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
+                        .requestMatchers("/get/**").permitAll()
                         .anyRequest().authenticated());
 
         http
