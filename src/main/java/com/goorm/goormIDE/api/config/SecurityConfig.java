@@ -89,14 +89,14 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/join","/login/**").permitAll()
+                        .requestMatchers("/", "/login", "/join").permitAll()
                         .requestMatchers("/swagger-ui/**","/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .requestMatchers("/ws/**").permitAll()
                         .requestMatchers("/get/**").permitAll()
                         .requestMatchers("/api/**").permitAll()
                         .requestMatchers("/oauth2/**").permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().permitAll());
 
         http
                 .addFilterBefore(new JwtFilter(jwtUtil), LoginFilter.class);
