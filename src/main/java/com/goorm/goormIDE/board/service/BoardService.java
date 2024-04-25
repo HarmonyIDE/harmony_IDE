@@ -70,7 +70,7 @@ public class BoardService {
 
     public Page<BoardDTO> paging(Pageable pageable) {
         int page = pageable.getPageNumber(); // 현재 페이지 번호
-        int size = 3; // 한 페이지에 보여질 게시글 수
+        int size = 10; // 한 페이지에 보여질 게시글 수
 
         // 페이지 번호가 0부터 시작하므로 실제 DB 조회할 때는 0이 아닌 1을 빼주어야 함
         int adjustedPage = page > 0 ? page - 1 : 0;
