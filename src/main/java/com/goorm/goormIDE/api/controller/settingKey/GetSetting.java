@@ -1,4 +1,4 @@
-package com.goorm.goormIDE.api.controller.settinUrl;
+package com.goorm.goormIDE.api.controller.settingKey;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 @RestController
 @RequiredArgsConstructor
 public class GetSetting {
+
     @Value("${chat.url:}")
     private String webSocketUrl;
     @Value("${gpt.key:}")
